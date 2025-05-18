@@ -10,10 +10,9 @@ stores it in a FAISS vector database, and then queries the database using an LLM
 # Standard imports
 import os  # Handles file paths and environment variables
 
-# External imports
+# Third party imports
 import langchain  # Main framework for building LLM-based applications
 
-# Third party imports
 # Callback handler to display intermediate results
 from langchain.callbacks import StdOutCallbackHandler
 
@@ -118,7 +117,7 @@ llm = ChatOpenAI(api_key=OPENAI_API_KEY, model=OPENAI_COMPLETIONS_MODEL)
 
 # RetrievalQA combines the retriever (search) with the LLM (answer generation)
 chain = RetrievalQA.from_chain_type(
-    llm=llm, retriever=retriever, verbose=True  # Enables logging for debugging
+    llm=llm, retriever=retriever, verbose=False  # Enables logging for debugging
 )
 
 # -------------------------------
@@ -138,7 +137,7 @@ response = chain.invoke(
 )
 print(response["result"])  # Display the chatbot's response
 
-# Second query (another test question)
+# # Second query (another test question)
 query = "What path should you take if you don't know where you are going?"
 response = chain.invoke({"query": query}, config={"callbacks": [handler]})
 print(response["result"])  # Display the chatbot's response

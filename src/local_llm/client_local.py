@@ -152,6 +152,7 @@ class LocalAI:
                 do_sample=True,  # when temperature used, do_sample is True
                 return_full_text=False,
                 repetition_penalty=1.03,
+                # presence_penalty=1.03,
             )
 
             # Create LangChain HuggingFacePipeline
