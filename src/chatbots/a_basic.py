@@ -6,6 +6,8 @@ from openai import OpenAI
 from src.config.parameters import EXIT_WORDS
 
 # Internal imports
+import sys
+
 from src.config.settings import OPENAI_API_KEY, OPENAI_COMPLETIONS_MODEL
 
 # Set your OpenAI API key
@@ -58,7 +60,7 @@ def generate_response(message_history):
     response = client.chat.completions.create(
         model=OPENAI_COMPLETIONS_MODEL,  # Models: https://platform.openai.com/docs/models/overview
         messages=message_history,
-        temperature=2.0,  # The temperature can range from 0 to 2.
+        temperature=1.0,  # The temperature can range from 0 to 2.
         max_tokens=100,  # short answers
         top_p=1.0,
         frequency_penalty=0.0,
