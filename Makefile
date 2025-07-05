@@ -33,12 +33,20 @@ venv:
 
 
 # Install dependencies using uv
-install:
+install_old:
 	uv pip install pip --upgrade
 	uv pip install -r requirements.txt
 	uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 	@echo "Dependencies installed."
 	@echo "To activate the virtual environment, please run: source $(VENV_NAME)/bin/activate or the corresponding command for your operating system."
+
+# Install dependencies using uv
+install:
+	uv pip install pip --upgrade
+	uv pip install -r requirements-app.txt
+	@echo "Dependencies installed."
+	@echo "To activate the virtual environment, please run: source $(VENV_NAME)/bin/activate or the corresponding command for your operating system."
+
 
 # Pre-commit hooks
 pre_commit:
@@ -118,6 +126,7 @@ check-all: check-format lint test
 help:
 	@echo "Makefile for tools"
 	@echo "Usage:"
+	@echo "  make install_uv   - Install uv tool"
 	@echo "  make venv         - Create a virtual environment"
 	@echo "  make activate     - Activate the virtual environment"
 	@echo "  make install      - Install dependencies using uv"
